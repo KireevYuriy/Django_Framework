@@ -2,7 +2,11 @@ import hashlib
 import random
 
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import (
+    AuthenticationForm,
+    UserChangeForm,
+    UserCreationForm,
+)
 
 from .models import ShopUser, ShopUserProfile
 
@@ -36,14 +40,24 @@ class ShopUserRegisterForm(UserCreationForm):
 
         user.is_active = False
         salt = hashlib.sha1(str(random.random()).encode("utf8")).hexdigest()[:6]
-        user.activation_key = hashlib.sha1((user.email + salt).encode("utf8")).hexdigest()
+        user.activation_key = hashlib.sha1(
+            (user.email + salt).encode("utf8")
+        ).hexdigest()
         user.save()
 
         return user
 
     class Meta:
         model = ShopUser
-        fields = ("username", "first_name", "password1", "password2", "email", "age", "avatar")
+        fields = (
+            "username",
+            "first_name",
+            "password1",
+            "password2",
+            "email",
+            "age",
+            "avatar",
+        )
 
 
 class ShopUserEditForm(UserChangeForm):
