@@ -22,4 +22,5 @@ urlpatterns = [
         ordersapp.order_forming_complete,
         name="order_forming_complete",
     ),
+    re_path(r"^product/(?P<pk>\d+)/price/$", ordersapp.get_product_price),
 ]
