@@ -202,8 +202,10 @@ if DEBUG:
 
 
 if DEBUG:
-    MIDDLEWARE.extend([
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
+    INSTALLED_APPS.extend([
+        "debug_toolbar",
+        "template_profiler_panel",
+        "django_extensions",
     ])
 
 # Debgu tool bar settings
